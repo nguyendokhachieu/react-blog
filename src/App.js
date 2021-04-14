@@ -8,22 +8,29 @@ import SearchPage from "./pages/SearchPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+import store from "./store";
+import { Provider } from "react-redux";
+
 function App() {
+
   return (
-    <Router>
-      <div className="wrapper-content">
-        <Header />
-        <Switch>
-          <Route path="/post-detail/:slug"><PostDetailPage /></Route>
-          <Route path="/search/:search_query"><SearchPage /></Route>
-          <Route path="/login"><LoginPage /></Route>
-          <Route exact path="/"><HomePage /></Route>
-          <Route><NotFoundPage /></Route>
-        </Switch>
-        <div className="spacing" />
-        <Footer />
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="wrapper-content">
+          <Header />
+          <Switch>
+            <Route path="/post-detail/:slug"><PostDetailPage /></Route>
+            <Route path="/search/:search_query"><SearchPage /></Route>
+            <Route path="/login"><LoginPage /></Route>
+            <Route exact path="/"><HomePage /></Route>
+            <Route><NotFoundPage /></Route>
+          </Switch>
+          <div className="spacing" />
+          <Footer />
+        </div>
+      </Router>
+    </Provider>
+    
   );
 }
 

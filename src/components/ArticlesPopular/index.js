@@ -3,7 +3,17 @@ import NewsListMainTitle from "./../NewsListMainTitle";
 import ArticleItem from '../ArticleItem';
 import Container from '../shared/Container';
 
-export default function ArticlesPopular() {
+export default function ArticlesPopular({ popularPosts }) {
+
+  let arrayArticleItems = null;
+  arrayArticleItems = popularPosts.map((post, index) => {
+    return (
+        <div key={index} className="popular-news__list--card">
+          <ArticleItem isStyleCard isShowDesc isShowCategoies post={post} />
+        </div>
+      );
+  });
+
   return (
     <div className="popular-news section bg-white-blue">
       <Container>
@@ -12,12 +22,7 @@ export default function ArticlesPopular() {
           <div className="popular-news__list--left">
             <div className="popular-news__list--row">
 
-              <div className="popular-news__list--card">
-                <ArticleItem isStyleCard isShowDesc isShowCategoies />
-              </div>
-              <div className="popular-news__list--card">
-                <ArticleItem isStyleCard isShowDesc isShowCategoies />  
-              </div>
+              { arrayArticleItems }
 
             </div>
           </div>
