@@ -1,5 +1,3 @@
-
-
 export default function ArticleItemStats({ viewCount }) {
   return (
     <ul className="article-item__stats">

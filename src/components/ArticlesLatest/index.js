@@ -1,8 +1,11 @@
 import './latest-news-list.css';
 import ArticleItem from '../ArticleItem';
 import NewsListMainTitle from "./../NewsListMainTitle";
+import { useSelector } from 'react-redux';
 
-export default function ArticlesLatest({ latestPosts }) {
+export default function ArticlesLatest() {
+
+  const latestPosts = useSelector(state => state.posts.latestPosts);
 
   let arrayArticleItems = null;
   arrayArticleItems = latestPosts.map((post, index) => {
@@ -20,17 +23,6 @@ export default function ArticlesLatest({ latestPosts }) {
         <div className="latest-news__list spacing">
           
           { arrayArticleItems }
-          {/* <div className="latest-news__card">
-            <ArticleItem />
-          </div>
-          
-          <div className="latest-news__card">
-            <ArticleItem />
-          </div>
-
-          <div className="latest-news__card">
-            <ArticleItem />
-          </div> */}
 
         </div>
       </div>

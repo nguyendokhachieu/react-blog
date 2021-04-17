@@ -2,23 +2,25 @@ import Container from "./../components/shared/Container";
 import ArticlesLatest from "./../components/ArticlesLatest";
 import ArticlesPopular from "./../components/ArticlesPopular";
 import ArticlesList from "./../components/ArticlesList";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
-import { actFetchPopularPostAsync, actFetchLatestPostAsync } from "./../store/posts/actions";
+import { actFetchPopularPostAsync, actFetchLatestPostAsync, actFetchPostsAsync } from "./../store/posts/actions";
+import { actGetCategoriesAsync } from "./../store/categories/actions";
 
 function HomePage() {
   const dispatch = useDispatch();
-  const posts = useSelector(state => state.posts);
   
   useEffect(() => {
     dispatch(actFetchLatestPostAsync());
     dispatch(actFetchPopularPostAsync());
-  }, []);
+    dispatch(actGetCategoriesAsync());
+    dispatch(actFetchPostsAsync());
+  }, [dispatch]);
 
   return (
     <Container>
-      <ArticlesLatest latestPosts={posts.latestPosts} />
-      <ArticlesPopular popularPosts={posts.popularPosts} />
+      <ArticlesLatest />
+      <ArticlesPopular />
       <ArticlesList />
    </Container>
   );

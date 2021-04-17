@@ -2,8 +2,11 @@ import './popular-news-list.css';
 import NewsListMainTitle from "./../NewsListMainTitle";
 import ArticleItem from '../ArticleItem';
 import Container from '../shared/Container';
+import { useSelector } from 'react-redux';
 
-export default function ArticlesPopular({ popularPosts }) {
+export default function ArticlesPopular() {
+
+  const popularPosts = useSelector(state => state.posts.popularPosts);
 
   let arrayArticleItems = null;
   arrayArticleItems = popularPosts.map((post, index) => {
@@ -26,10 +29,10 @@ export default function ArticlesPopular({ popularPosts }) {
 
             </div>
           </div>
-          <div className="popular-news__list--right">
+          {/* <div className="popular-news__list--right">
             <div className="popular-news__list--row">
               <div className="popular-news__list--card">
-                <ArticleItem isStyleCard isStyleRow isShowDesc isShowCategoies />
+                <ArticleItem isStyleCard isStyleRow isShowDesc isShowCategoies /> */}
                 {/* <article className="article-item style-card style-row">
                   <div className="article-item__thumbnail">
                     <Link to="#">
@@ -75,10 +78,10 @@ export default function ArticlesPopular({ popularPosts }) {
                     </div>
                   </div>
                 </article> */}
-              </div>
+              {/*</div>*/}
               {/* End Popular news card */}
-            </div>
-          </div>
+            {/*</div>*/}
+          {/*</div> */}
         </div>
       </Container>
     </div>

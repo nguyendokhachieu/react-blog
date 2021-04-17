@@ -23,9 +23,13 @@ function Button({
     'btn-size-large': size === 'large'
   })
 
+  const handleOnClick = (e) => {
+    onClick(e);
+  }
+
   if (type === 'button') {
     return (
-      <button {...restProps} type={htmlType} className={classes}>
+      <button {...restProps} type={htmlType} className={classes} onClick={ handleOnClick }>
         { loading && loadingPos === 'left' && <Loading /> }
         { children }
         { loading && loadingPos === 'right' && <Loading /> }
@@ -35,7 +39,7 @@ function Button({
 
   if (type === 'link') {
     return (
-      <a {...restProps} className={classes}>
+      <a {...restProps} className={classes} onClick={ handleOnClick }>
         { loading && loadingPos === 'left' && <Loading /> }
         { children }
         { loading && loadingPos === 'right' && <Loading /> }

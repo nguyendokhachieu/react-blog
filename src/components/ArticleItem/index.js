@@ -6,7 +6,7 @@ import ArticleItemTitle from './ArticleItemTitle';
 import ArticleItemInfo from './ArticleItemInfo';
 import ArticleItemCategories from './ArticleItemCategories';
 import ArticleItemStats from './ArticleItemStats';
-import { useState, useEffect } from 'react';
+import Loading from "./../shared/Loading";
 
 export default function ArticleItem({
   isStyleRow = false,
@@ -22,43 +22,25 @@ export default function ArticleItem({
     'style-row': isStyleRow,
   })
 
-  const [featuredMediaURL, setFeaturedMediaURL] = useState("");
-  const [slug, setSlug] = useState("");
-  const [viewCount, setViewCount] = useState(0);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [authorData, setAuthorData] = useState({
-    nickname: "",
-    description: "",
-    avatar: null,
-  });
 
-  useEffect(() => {
-    if (post) {
-      setFeaturedMediaURL(post.featured_media_url);
-      setSlug(post.slug);
-      setViewCount(post.view_count);
-      setTitle(post.title.rendered);
-      setDescription(post.excerpt.rendered);
-      setAuthorData(post.author_data);
-      setDate(post.date);
-    }
-  }, [post]);
-
+  // thêm SVG loading
+  if (!post) {
+    return <Loading></Loading>;
+  }
+  
   return (
     <article className={classes}>
-      <ArticleItemThumb url={ featuredMediaURL } slug={ slug } />
+      <ArticleItemThumb url={ post.featured_media_url } slug={ post.slug } />
       <div className="article-item__content">
 
-        { isShowCategoies && <ArticleItemCategories /> }
-        { isShowCategoies && <ArticleItemStats viewCount={ viewCount }/> }
+        { isShowCategoies && <ArticleItemCategories categories={ post.categories } /> }
+        { isShowCategoies && <ArticleItemStats viewCount={ post.view_count }/> }
 
-        <ArticleItemTitle slug={ slug } title={ title }/>
+        <ArticleItemTitle slug={ post.slug } title={ post.title.rendered }/>
 
-        { isShowDesc && <ArticleItemDesc description={ description }/> }
+        { isShowDesc && <ArticleItemDesc description={ post.excerpt.rendered }/> }
 
-        <ArticleItemInfo isShowAvatar={isShowAvatar} authorData={ authorData } date={ date }/>
+        <ArticleItemInfo isShowAvatar={isShowAvatar} authorData={ post.author_data } date={ post.date }/>
       </div>
     </article>
   )

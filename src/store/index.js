@@ -1,9 +1,11 @@
 import { applyMiddleware } from "redux";
 import { createStore, combineReducers } from "redux";
 import postsReducer from "./posts/reducer";
+import categoriesReducer from "./categories/reducer";
 
 const rootReducer = combineReducers({
-    posts: postsReducer
+    posts: postsReducer,
+    categories: categoriesReducer,
 });
 
 const middleware = (store) => next => action => {

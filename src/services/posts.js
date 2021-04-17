@@ -1,16 +1,18 @@
 import { api } from "./api";
 
 export const PostService = {
-    getList: (queryObj) => {
-        let queryString = '';
-        for (let key in queryObj) {
-            queryString += key + '=' + queryObj[key] + '&';
-        }
-        queryString = queryString.substr(0, queryString.length - 1);
-
-        let path = 'wp/v2/posts?' + queryString;
-        
-        return api.call().get(path);
+    getList: ({
+        page = 1,
+        per_page = 3,
+        ...restParams
+    }) => {
+        return api.call().get('wp/v2/posts', {
+            params: {
+                page,
+                per_page,
+                ...restParams,
+            }
+        })
     }
 }
 

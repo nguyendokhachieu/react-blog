@@ -1,4 +1,4 @@
-import { ACT_FETCH_LATEST_POSTS, ACT_FETCH_POPULAR_POSTS } from "./actions";
+import { ACT_FETCH_LATEST_POSTS, ACT_FETCH_POPULAR_POSTS, ACT_FETCH_POSTS } from "./actions";
 
 const initPostsState = {
     popularPosts: [],
@@ -16,6 +16,14 @@ const postsReducer = (state = initPostsState, action) => {
         return {
             ...state,
             popularPosts: action.payload.popularPosts,
+        }
+    } else if (action.type === ACT_FETCH_POSTS) {
+        const p = action.payload.posts;
+        let copiedPosts = [...state.posts];
+        copiedPosts = copiedPosts.concat(p);
+        return {
+            ...state,
+            posts: copiedPosts,
         }
     }
 
