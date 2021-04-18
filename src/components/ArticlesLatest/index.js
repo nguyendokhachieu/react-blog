@@ -2,6 +2,7 @@ import './latest-news-list.css';
 import ArticleItem from '../ArticleItem';
 import NewsListMainTitle from "./../NewsListMainTitle";
 import { useSelector } from 'react-redux';
+import Loading from "./../shared/Loading";
 
 export default function ArticlesLatest() {
 
@@ -15,6 +16,7 @@ export default function ArticlesLatest() {
         </div>
       );
   });
+  console.log(arrayArticleItems);
 
   return (
     <div className="latest-news section">
@@ -22,7 +24,7 @@ export default function ArticlesLatest() {
         <NewsListMainTitle>Bài viết mới nhất</NewsListMainTitle>
         <div className="latest-news__list spacing">
           
-          { arrayArticleItems }
+          { arrayArticleItems.length === 0 ? <h1 align="center">Đang tải . . .</h1> : arrayArticleItems }
 
         </div>
       </div>

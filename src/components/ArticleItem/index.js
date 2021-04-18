@@ -22,10 +22,8 @@ export default function ArticleItem({
     'style-row': isStyleRow,
   })
 
-
-  // thêm SVG loading
   if (!post) {
-    return <Loading></Loading>;
+    return null;
   }
   
   return (

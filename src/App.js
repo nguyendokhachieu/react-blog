@@ -19,6 +19,7 @@ function App() {
         <div className="wrapper-content">
           <Header />
           <Switch>
+            <Route path="/categories/:slug"><SearchPage /></Route>
             <Route path="/post-detail/:slug"><PostDetailPage /></Route>
             <Route path="/search/:search_query"><SearchPage /></Route>
             <Route path="/login"><LoginPage /></Route>

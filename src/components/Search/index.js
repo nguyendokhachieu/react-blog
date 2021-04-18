@@ -19,8 +19,8 @@ export default function Search(props) {
             </div>
           </div>
           <div className="text-center">
-            <Button size="large" variant="primary" loading>
-              Load more . . .
+            <Button size="large" variant="primary">
+              Tải thêm
             </Button>
           </div>
         </Container>

@@ -39,7 +39,7 @@ export default function ArticlesList() {
       <Container>
         <NewsListMainTitle>Danh sách bài viết</NewsListMainTitle>
         <Row>
-          { arrayArticleItems }
+        { arrayArticleItems.length === 0 ? <h1 align="center">Đang tải . . .</h1> : arrayArticleItems }
         </Row>
         {/* End Row News List */}
         {/* Btn Loadmore */}

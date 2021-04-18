@@ -25,7 +25,7 @@ export default function ArticlesPopular() {
           <div className="popular-news__list--left">
             <div className="popular-news__list--row">
 
-              { arrayArticleItems }
+             { arrayArticleItems.length === 0 ? <h1 align="center">Đang tải . . .</h1> : arrayArticleItems }
 
             </div>
           </div>
