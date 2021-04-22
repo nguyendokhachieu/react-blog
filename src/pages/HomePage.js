@@ -5,7 +5,6 @@ import ArticlesList from "./../components/ArticlesList";
 import { useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { actFetchPopularPostAsync, actFetchLatestPostAsync, actFetchPostsAsync } from "./../store/posts/actions";
-import { actGetCategoriesAsync } from "./../store/categories/actions";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -13,7 +12,6 @@ function HomePage() {
   useEffect(() => {
     dispatch(actFetchLatestPostAsync());
     dispatch(actFetchPopularPostAsync());
-    dispatch(actGetCategoriesAsync());
     dispatch(actFetchPostsAsync());
   }, [dispatch]);
 

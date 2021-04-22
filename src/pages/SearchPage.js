@@ -5,13 +5,11 @@ import { useParams, useRouteMatch } from "react-router";
 import Search from "./../components/Search";
 
 export default function SearchPage(props) {
-  const [isCategoriesListLoaded, setIsCategoriesListLoaded] = useState(false);
-
   const categoriesList = useSelector(state => state.categories.categoriesList);
   const params = useParams();
   const { slug } = params;
   
-  // if ()
+  // console.log(categoriesList);
 
   return (
       <Search />

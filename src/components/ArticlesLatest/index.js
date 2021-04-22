@@ -16,7 +16,7 @@ export default function ArticlesLatest() {
         </div>
       );
   });
-  console.log(arrayArticleItems);
+  // console.log(arrayArticleItems);
 
   return (
     <div className="latest-news section">

@@ -8,13 +8,19 @@ import SearchPage from "./pages/SearchPage";
 import PostDetailPage from "./pages/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-import store from "./store";
-import { Provider } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { actGetCategoriesAsync } from "./store/categories/actions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actGetCategoriesAsync());
+  }, []);
 
   return (
-    <Provider store={store}>
       <Router>
         <div className="wrapper-content">
           <Header />
@@ -29,9 +35,7 @@ function App() {
           <div className="spacing" />
           <Footer />
         </div>
-      </Router>
-    </Provider>
-    
+      </Router>    
   );
 }
 
