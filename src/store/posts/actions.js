@@ -36,7 +36,7 @@ const actFetchLatestPost = (latestPosts) => {
 export const actFetchPopularPostAsync = () => {
   let queryObj = {
     page: 1,
-    per_page: 3,
+    per_page: 4,
     orderby: "post_views",
   };
 
@@ -62,12 +62,14 @@ const actFetchPopularPosts = (popularPosts) => {
 
 
 // ============ ACTION FETCH POSTS ASYNC ============
-export const actFetchPostsAsync = (p = 1) => {
+export const actFetchPostsAsync = (currentPage = 1, perPage = 2) => {
   return async (dispatch) => {
     try {
-      const data = await PostService.getList({page: p, per_page: 4});
+      const data = await PostService.getList({page: currentPage, per_page: perPage});
       const posts = data.data;
-      dispatch(actFetchPosts(posts));
+      const totalPosts = Number(data.headers['x-wp-total']);
+      const totalPage = Number(data.headers['x-wp-totalpages']);
+      dispatch(actFetchPosts(posts, currentPage, perPage, totalPage, totalPosts));
     } catch (e) {
       console.log("ERROR FETCH", e);
     }
@@ -75,11 +77,15 @@ export const actFetchPostsAsync = (p = 1) => {
   }
 }
 
-const actFetchPosts = (posts) => {
+const actFetchPosts = (posts, currentPage, perPage, totalPage, totalPosts) => {
   return {
     type: ACT_FETCH_POSTS,
     payload: {
       posts,
+      currentPage,
+      perPage,
+      totalPage,
+      totalPosts,
     }
   }
 }

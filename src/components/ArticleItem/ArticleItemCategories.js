@@ -21,6 +21,5 @@ export default function ArticleItemCategories({ categories }) {
     );
   });
 
-  
   return <ul className="article-item__categories">{ categoriesJSX }</ul>
 }
