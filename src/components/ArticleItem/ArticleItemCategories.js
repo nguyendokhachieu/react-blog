@@ -16,7 +16,7 @@ export default function ArticleItemCategories({ categories }) {
     
     return (
       <li key={ index }>
-          <Link to={ `/categories/${value.slug}` } className="btn btn-category">{ value.name }</Link>
+          <Link to={ `/categories/${value.id}` } className="btn btn-category">{ value.name }</Link>
       </li>
     );
   });

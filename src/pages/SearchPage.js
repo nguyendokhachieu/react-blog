@@ -1,17 +1,15 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useParams, useRouteMatch } from "react-router";
-import Search from "./../components/Search";
+import { useParams, useLocation } from "react-router";
+import SearchByCategory from "./../components/Search/SearchByCategory";
 
-export default function SearchPage(props) {
-  const categoriesList = useSelector(state => state.categories.categoriesList);
+export default function SearchPage() {
   const params = useParams();
-  const { slug } = params;
-  
-  // console.log(categoriesList);
+  const location = useLocation();
 
-  return (
-      <Search />
-  );
+  const isCategorySearch = location.pathname.includes("categories");
+
+  const { search_query, id } = params;
+
+  if (isCategorySearch) {
+    return <SearchByCategory id={id} />;
+  }
 }
